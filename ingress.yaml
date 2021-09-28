@@ -1,0 +1,44 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ingress
+  annotations:
+    kubernetes.io/ingress.class: "gce"
+    ingress.kubernetes.io/rewrite-target: /
+
+spec:
+  rules:
+  - host: localhost
+    http:
+      paths:
+      - path: /*
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: hello
+            port:
+              number: 80
+
+      - path: /app
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: hello
+            port:
+              number: 80
+
+      - path: /app/contact
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: hello
+            port:
+              number: 80
+
+      - path: /app/about
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: hello
+            port:
+              number: 80
